@@ -103,7 +103,6 @@ namespace Aplicacion
                 Console.WriteLine("========================================");
                 Console.WriteLine("Elija decorador:\n");
 
-                // Detectar si este dispositivo permite Modo Cine
                 bool esParaModoCine =
                     nombreDispositivo.Contains("Televisor") ||
                     nombreDispositivo.Contains("Bocinas") ||
@@ -113,7 +112,6 @@ namespace Aplicacion
                 bool tieneNocturno = decoradoresAplicados.Contains("Modo nocturno");
                 bool tieneCine = decoradoresAplicados.Contains("Modo Cine");
 
-                // Solo mostramos decoradores que NO estén ya aplicados
                 if (!tieneAhorro)
                     Console.WriteLine("1. Decorador ahorro de energía");
 
@@ -137,9 +135,6 @@ namespace Aplicacion
             }
         }
 
-        // ============================================================
-        //    Aplica el decorador según el tipo elegido
-        // ============================================================
         private IDispositivo AplicarDecorador(IDispositivo baseDispositivo, int tipo)
         {
             if (tipo == 1) return new DecoradorAhorroEnergia(baseDispositivo);
@@ -148,9 +143,6 @@ namespace Aplicacion
             return baseDispositivo;
         }
 
-        // ============================================================
-        //    Obtiene la lista de decoradores ya aplicados a un dispositivo
-        // ============================================================
         private List<string> ObtenerDecoradoresAplicados(IDispositivo dispositivo)
         {
             var decoradores = new List<string>();
@@ -158,16 +150,13 @@ namespace Aplicacion
 
             while (actual is DispositivoDecorador dec)
             {
-                decoradores.Add(dec.NombreDecorador);  // Ej: "Ahorro de energía", "Modo nocturno", "Modo Cine"
+                decoradores.Add(dec.NombreDecorador);  
                 actual = dec.Inner;
             }
 
             return decoradores;
         }
 
-        // ============================================================
-        //    Mapea el número de opción al nombre del decorador
-        // ============================================================
         private string ObtenerNombreDecoradorPorTipo(int tipo)
         {
             if (tipo == 1) return "Ahorro de energía";

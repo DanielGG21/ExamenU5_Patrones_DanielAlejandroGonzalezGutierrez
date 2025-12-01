@@ -10,9 +10,7 @@ namespace Aplicacion
 {
     public sealed class CentroDeControlCasa
     {
-        // ─────────────────────────────────────────────
-        //       SINGLETON CLÁSICO (DOBLE VERIFICACIÓN)
-        // ─────────────────────────────────────────────
+
 
         private static CentroDeControlCasa _instancia = null;
         private static readonly object _lock = new object();
@@ -36,9 +34,6 @@ namespace Aplicacion
             }
         }
 
-        // ─────────────────────────────────────────────
-        //              CAMPOS INTERNOS
-        // ─────────────────────────────────────────────
 
         private List<IDispositivo> dispositivos;
         private ConstructorCasa constructor;
@@ -47,34 +42,25 @@ namespace Aplicacion
         private ControladorEscenasCasa controladorEscenas;
         private ControladorGrupos controladorGrupos;
 
-        // Constructor privado → obligatorio del Singleton
         private CentroDeControlCasa() { }
 
 
-        // ─────────────────────────────────────────────
-        //              MÉTODO PRINCIPAL
-        // ─────────────────────────────────────────────
+    
 
         public void Iniciar()
         {
-            // 1. Crear dispositivos de forma inicial
             dispositivos = CrearDispositivosIniciales();
 
-            // 2. Decoración (mismo flujo que antes)
             var servicioDecoracion = new ServicioDecoracionDispositivos();
             servicioDecoracion.DecorarDispositivos(dispositivos);
 
-            // 3. Crear estructura de la casa (Composite)
             constructor = new ConstructorCasa(dispositivos);
 
-            // 4. Crear Originator + Historial (Memento)
             originator = new EstadoCasaOriginator(constructor.Casa);
             historial = new HistorialEscenasCasa();
 
-            // 5. Controlador de escenas (Aplicación)
             controladorEscenas = new ControladorEscenasCasa(originator, historial);
 
-            // 6. Controlador principal de grupos
             controladorGrupos = new ControladorGrupos(
                 constructor.Sala,
                 constructor.Cocina,
@@ -84,14 +70,8 @@ namespace Aplicacion
                 controladorEscenas
             );
 
-            // 7. Ejecutar menú principal
             controladorGrupos.Ejecutar();
         }
-
-
-        // ─────────────────────────────────────────────
-        //              CREAR DISPOSITIVOS
-        // ─────────────────────────────────────────────
 
         private List<IDispositivo> CrearDispositivosIniciales()
         {
