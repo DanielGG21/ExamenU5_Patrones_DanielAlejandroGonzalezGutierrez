@@ -129,7 +129,7 @@ namespace Aplicacion
                     }
 
                     Console.Clear();
-                    Console.WriteLine("====   Eliminar escena   =====================\n");
+                    Console.WriteLine("====   Eliminar escena   ======================\n");
                     for (int i = 0; i < historialEscenas.Escenas.Count; i++)
                     {
                         var e = historialEscenas.Escenas[i];

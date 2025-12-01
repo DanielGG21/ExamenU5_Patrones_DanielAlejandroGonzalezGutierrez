@@ -297,7 +297,7 @@ namespace Aplicacion
                         casa.Apagar();
                     }
 
-                    Console.WriteLine("\n========================================");
+                    Console.WriteLine("\n=========================================");
                     Console.WriteLine("\nPresione una tecla para regresar");
                     Console.ReadKey();
                 }

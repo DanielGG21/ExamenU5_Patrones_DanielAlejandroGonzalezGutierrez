@@ -70,7 +70,7 @@ namespace Aplicacion
                 controladorEscenas
             );
 
-            controladorGrupos.Ejecutar();
+            controladorGrupos.Ejecutar(); 
         }
 
         private List<IDispositivo> CrearDispositivosIniciales()

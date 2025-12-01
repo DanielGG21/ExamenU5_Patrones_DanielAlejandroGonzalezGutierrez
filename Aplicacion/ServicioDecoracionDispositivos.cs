@@ -14,7 +14,7 @@ namespace Aplicacion
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("====   Dispositivos disponibles para decorar:   =====================\n");
+                Console.WriteLine("====   Dispositivos disponibles para decorar:  ======================\n");
 
                 for (int i = 0; i < dispositivos.Count; i++)
                 {
